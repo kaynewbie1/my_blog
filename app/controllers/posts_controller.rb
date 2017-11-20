@@ -26,8 +26,33 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  #We need to specify what paramaters we want to save so need to create a method because rails 4 and beyond security features requries you to explcitly say what parameters you want to allow so need ap rivate method
 
+def edit
+  @post = Post.find(params[:id])
+end
+
+def update
+  @post = Post.find(params[:id])
+  if @post.update(params[:post].permit(:title, :body))
+    redirect_to @post
+  else
+    render 'edit'
+  end
+end
+
+
+def destroy
+  @post = Post.find(params[:id])
+  @post.destroy
+
+  redirect_to root_path
+end
+
+
+
+
+
+  #We need to specify what paramaters we want to save so need to create a method because rails 4 and beyond security features requries you to explcitly say what parameters you want to allow so need a private method
   private
     def post_params
       params.require(:post).permit(:title, :body)

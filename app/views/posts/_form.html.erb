@@ -1,0 +1,30 @@
+<!-- rails is smart enough to tell if the form is for edit or new so you don't need :post, url: posts_path -->
+<%= form_for @post do |f| %>
+
+  <% if @post.errors.any? %>
+    <div id="errors">
+    <!-- pluralize is for anyting past a count of 1 it will automatically pluralize it or it will just be errlr -->
+      <h2><%= pluralize(@post.errors.count, "error") %> prevented this post from saving</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <%end%>
+      </ul>
+    </div>
+  <%end%>
+
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
+
+     <p>
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </p>
+
+     <p>
+      <%= f.submit %>
+    </p>
+
+  <% end %>
