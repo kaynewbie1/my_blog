@@ -5,16 +5,21 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
   end
 
   #save posts, define a create method
   def create
     #first create post
     @post = Post.new(post_params)
-    @post.save
 
-    #redirect to @post
-    redirect_to @post
+    # if statement to control when to display error messages and to handle if save is successful
+    if @post.save
+      redirect_to @post
+    else
+      #we want to do a render instead of a redirect because a redirect will do a new http refresh if the post did not save and the user will loose all the content they put in the form.  Render new method keeps all content in place
+      render 'new'
+    end
   end
 
   def show
