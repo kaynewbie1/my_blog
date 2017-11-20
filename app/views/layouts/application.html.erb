@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff"> -->
+
     <title>MyBlog</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +17,47 @@
   </head>
 
   <body>
+
+    <div id="sidebar">
+      <!-- Add logo to sidebar navigation -->
+
+
+      <!-- Add navigation links -->
+      <ul>
+        <li class="category">Website</li>
+        <li><%= link_to "Blog", root_path %> </li>
+        <li>About</li>
+      </ul>
+
+      <ul>
+        <li class="category">Social</li>
+        <li><a href="https://twitter.com/GottaHaveTennis?lang=en">Twitter</a></li>
+        <li><a href="https://www.instagram.com/tenniscrazy1/">Instagram</a></li>
+        <li><a href="mailto:tenniscrazy1@gmail.com">Email</a></li>
+        <li>About</li>
+      </ul>
+
+      <p class="sign_in">Login</p>
+    </div>
+
+    <div id="main_content">
+      <div id="header">
+      <p>All Posts</p>
+
+        <div  class="buttons">
+          <button class="button"><%= link_to "New Post", new_post_path %></button>
+          <button class="button">Log Out</button>
+        </div>
+      </div>
+
+
+    <!-- Add below text for a flash message if someone creates a post, sign-in or sign-out, it will say, you successfully created a new post -->
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <%end%>
+
     <%= yield %>
+
+    </div>
   </body>
 </html>
