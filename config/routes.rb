@@ -3,5 +3,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :users, only: [:new, :create, :show]
+
+
+
  root "posts#index"
 end

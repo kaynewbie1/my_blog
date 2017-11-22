@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
     # if statement to control when to display error messages and to handle if save is successful
     if @post.save
+      flash[:notice] = "Post successfully created"
       redirect_to @post
     else
       #we want to do a render instead of a redirect because a redirect will do a new http refresh if the post did not save and the user will loose all the content they put in the form.  Render new method keeps all content in place
@@ -34,6 +35,7 @@ end
 def update
   @post = Post.find(params[:id])
   if @post.update(params[:post].permit(:title, :body))
+    flash[:notice] = "Post successfully updated"
     redirect_to @post
   else
     render 'edit'
