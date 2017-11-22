@@ -1,0 +1,9 @@
+<div id="page_wrapper">
+<h2>Login</h2>
+
+<%= form_with url: sessions_path, local: true do |f| %>
+  <%= f.text_field :username, placeholder: "username" %>
+  <%= f.password_field :password, placeholder: "password" %>
+  <%= submit_tag  %>
+<% end %>
+</div>

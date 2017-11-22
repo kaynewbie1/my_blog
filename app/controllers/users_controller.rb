@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Welcome To Anything Blog"
       redirect_to root_path
     else
-      # @errors = @user.errors.full_messages
+      @errors = @user.errors.full_messages
       render :new
     end
   end

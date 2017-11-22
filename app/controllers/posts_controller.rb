@@ -19,6 +19,7 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       #we want to do a render instead of a redirect because a redirect will do a new http refresh if the post did not save and the user will loose all the content they put in the form.  Render new method keeps all content in place
+      flash.now[:notice] = "Could not create new post, please try again"
       render 'new'
     end
   end
@@ -49,10 +50,6 @@ def destroy
 
   redirect_to root_path
 end
-
-
-
-
 
   #We need to specify what paramaters we want to save so need to create a method because rails 4 and beyond security features requries you to explcitly say what parameters you want to allow so need a private method
   private
