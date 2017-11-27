@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Dashing::Engine, at: Dashing.config.engine_path
   resources :posts do
     resources :comments
   end
