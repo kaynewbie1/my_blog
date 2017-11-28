@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      UserMailer.notify_user(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Welcome To Anything Blog"
       redirect_to root_path
